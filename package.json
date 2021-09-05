@@ -1,0 +1,25 @@
+{
+  "name": "deinflation",
+  "version": "1.0.0",
+  "description": "Inflate and deflate currency at month accuracy with data from the US Bureau of Labor Statistics.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -e js",
+    "test": "node index.js --self-test"
+  },
+  "keywords": [
+    "inflation",
+    "price",
+    "money"
+  ],
+  "author": "pGooch",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "sync-fetch": "^0.3.0"
+  }
+}
