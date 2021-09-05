@@ -59,6 +59,25 @@ export default function adjust(value, dateA, dateB = null) {
 }
 
 /*
+	Data Last Updated
+
+	This will return a pretty string with the data of the newest data in it.
+*/
+export function dataLastUpdated() {
+	// Load data or get data and wait for it to be ready, if we haven't already done that
+	if (inflationData.status === 'pending') {
+		loadData();
+	}
+
+	let [year, month] = getLatestDate();
+	month = ["January", "February", "March", "April", "May", "June",
+		"July", "August", "September", "October", "November", "December"
+	][month];
+
+	return 'Inflation data last updated ' + month + ' ' + year;
+}
+
+/*
 	Load Data
 
 	This will attempt to load the data from the saved copt, the status will be set to updating
@@ -76,7 +95,7 @@ async function loadData() {
 		}
 		console.log('💸 deinflation data loaded from file.');
 		// Check if the data may need an update
-		const [latestYear, latestMonth] = getLatestDate();
+		const [latestYear, latestMonth] = getEarliestDate();
 		const currentDate = new Date().toLocaleString('en-US', { month: 'numeric', year: 'numeric' }).split('/').reverse().map(v => parseInt(v));
 		if (latestYear !== currentDate[0] || latestMonth !== currentDate[1]) {
 			if (new Date() - new Date(inflationData.lastUpdated) <= (24 * 60 * 60 * 1000)) {
@@ -216,6 +235,7 @@ function normalizeDate(date) {
 
 	return date;
 }
+
 /*
 	Self Test
 

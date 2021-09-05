@@ -33,5 +33,9 @@ The primary function is the `adjust( value, dateA, dateB )` one, this will adjus
     moneyDiff: '$295.28'
     }
 
+The only other function designed for direct use (not that the others are restricted) is the `dataLastUpdated()` function which returns a pretty string with the date the data was last updated. This is the date of the latest data in the dataset, _not_ the last date the data was checked. For example, when called during development in August it reads;
+
+    Inflation data last updated July 2021
+
 ## About the data
 The data used in internal calculations is gathered from the latest report from http://www.bls.gov/cpi/tables.htm in Table 24. It is stored in a json file with a bit of meta data about when it was pulled. The data will attempt to update every 24hrs after the data is officially out of date however the BLS does not publish this data with any regularity I found noted
