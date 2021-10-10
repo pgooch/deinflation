@@ -19,7 +19,7 @@ let returnData = {};
 	sorts of information in it. If only 1 date is passed it will use the latest date in the data
 	which is unlikely to be today but is as close as you can get with the provided data.
 */
-export default function adjust(value, dateA, dateB = null) {
+export function adjust(value, dateA, dateB = null) {
 	// Load data or get data and wait for it to be ready, if we haven't already done that
 	if (inflationData.status === 'pending') {
 		loadData();
@@ -200,8 +200,10 @@ function normalizeDate(date) {
 		if (typeof date == 'string') {
 			date = date.split(/[-/]/g);
 		}
-		if (date.length > 1) {
-			date = date[0].length == 2 ? [parseInt(date[1]), parseInt(date[0])] : [parseInt(date[1]), parseInt(date[0])];
+		if (date.length === 3) {
+			date = [parseInt(date[2]), parseInt(date[0])];
+		} else if (date.length > 1) {
+			date = date[1].length == 4 ? [parseInt(date[1]), parseInt(date[0])] : [parseInt(date[0]), parseInt(date[1])];
 		} else {
 			date[1] = 'AVG';
 		}

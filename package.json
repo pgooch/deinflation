@@ -1,8 +1,7 @@
 {
   "name": "deinflation",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Inflate and deflate currency at month accuracy with data from the US Bureau of Labor Statistics.",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -e js",
